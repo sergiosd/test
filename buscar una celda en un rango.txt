@@ -1,0 +1,19 @@
+		Set c = Worksheets("exportar").Range("AA2:AA10000").Find(What:=currentoutputTicker, LookIn:=xlValues)
+        If c Is Nothing Then
+            If Worksheets(hoja).Range("F" & i) <= maxIV Then
+            'If Worksheets(hoja).Range("AC" & i).value * 100 <= maxRisk Then
+                .Range("AA" & startinput + j) = Worksheets(hoja).Range("B" & i)
+                .Range("AB" & startinput + j) = Worksheets(hoja).Range("B5")
+                .Range("AC" & startinput + j) = Worksheets(hoja).Range("K" & i)
+                If IVdata Then
+                    .Range("AD" & startinput + j) = Worksheets(hoja).Range("U" & i)
+                Else
+                    .Range("AD" & startinput + j) = ""
+                End If
+                .Range("AE" & startinput + j) = Worksheets(hoja).Range("D" & i)
+                .Range("AE" & startinput + j).NumberFormat = "00.00"
+                .Range("AF" & startinput + j) = Worksheets(hoja).Range("Y" & i)
+                .Range("AG" & startinput + j) = Worksheets(hoja).Range("AC" & i)
+                j = j + 1
+            End If
+        End If
