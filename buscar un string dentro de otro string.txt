@@ -1,0 +1,17 @@
+Public Function extractString(sstring As String, s1 As String, s2 As String) As String
+' extractString("|" & "abcdefg","|","c")="ab"
+Dim pos1 As Integer
+Dim pos2 As Integer
+Dim sbuffer As String
+
+
+pos1 = InStr(sstring, s1)
+pos2 = InStr(sstring, s2)
+If pos1 * pos2 = 0 _
+    Or pos1 > pos2 Then
+    extractString = ""
+Else
+    extractString = Mid$(sstring, pos1 + 1, pos2 - pos1 - 1)
+End If
+
+End Function

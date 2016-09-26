@@ -1,0 +1,40 @@
+Sub EliminarArchivos()
+Dim Q&, Msg$, miDir$
+miDir = "C:\COPIAS"
+
+With CreateObject("Scripting.FileSystemObject")
+  miDir = Trim(miDir)
+  On Error GoTo err_Folder
+  Q = .GetFolder(miDir).Files.Count
+  If Q < 50 Then Exit Sub
+  
+  Msg = "La carpeta " & miDir & " contiene " & Q & " archivos." & vbLf & "¿Confirma eliminación?"
+  If MsgBox(Msg, 1, "Confirmación") = 2 Then Exit Sub
+  
+  Q = InStrRev(miDir, "\")
+  On Error GoTo err_Permission_denied
+  .GetFolder(miDir).Delete True
+  
+  On Error GoTo err_Exists
+  .GetFolder(Left(miDir, Q)).SubFolders.Add Mid(miDir, 1 + Q, 100)
+  On Error GoTo 0
+  
+  With .CreateTextFile(miDir & "\_File cleanup.txt")
+    .WriteLine Now
+    .Close
+  End With
+End With
+Exit Sub
+
+err_Folder:
+MsgBox "La carpeta " & vbLf & miDir & vbLf & "no existe."
+Exit Sub
+
+err_Permission_denied:
+MsgBox "Algún archivo de la carpeta:" & vbLf & vbLf & miDir & vbLf & vbLf & _
+  "se encuentra abierto: ¡Proceso interrumpido!"
+Exit Sub
+
+err_Exists:
+Resume
+End Sub
