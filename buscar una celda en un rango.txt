@@ -11,6 +11,9 @@ guey que pasa, ay amigo
                 If IVdata Then
                     .Range("AD" & startinput + j) = Worksheets(hoja).Range("U" & i)
                 Else
+                cabeza
+                pollo
+                pato
                     .Range("AD" & startinput + j) = ""
                 End If
                 .Range("AE" & startinput + j) = Worksheets(hoja).Range("D" & i)
