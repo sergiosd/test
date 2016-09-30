@@ -1,5 +1,6 @@
 *****************************************************
-guey que pasa
+guey que pasa, ay amigo
+
 		Set c = Worksheets("exportar").Range("AA2:AA10000").Find(What:=currentoutputTicker, LookIn:=xlValues)
         If c Is Nothing Then
             If Worksheets(hoja).Range("F" & i) <= maxIV Then
